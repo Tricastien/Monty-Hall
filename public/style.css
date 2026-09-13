@@ -1,0 +1,290 @@
+:root {
+  --bg: #14102b;
+  --bg-panel: #1e1a3c;
+  --gold: #f4c775;
+  --gold-dark: #c99a3d;
+  --keep-color: #2ecc71;
+  --switch-color: #4d9bf5;
+  --text: #f5f3ff;
+  --text-dim: #b8b2d9;
+  --danger: #ff6b6b;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.hidden { display: none !important; }
+
+.screen { display: none; }
+.screen.active { display: block; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+button:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.btn {
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: transform 0.08s ease;
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--gold);
+  color: #2a1f00;
+}
+.btn-secondary {
+  background: var(--bg-panel);
+  color: var(--text);
+  border: 1px solid #3a3466;
+}
+.btn-big {
+  font-size: 1.4rem;
+  padding: 22px 32px;
+}
+.btn-keep {
+  background: var(--keep-color);
+  color: #06280f;
+}
+.btn-switch {
+  background: var(--switch-color);
+  color: #06122a;
+}
+
+/* ================= ÉLÈVE (mobile) ================= */
+
+.app.student {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app.student h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 8px 0 4px;
+}
+.subtitle {
+  text-align: center;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+}
+
+.field {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  color: var(--text-dim);
+}
+.field input {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #3a3466;
+  background: var(--bg-panel);
+  color: var(--text);
+  font-size: 1.2rem;
+  text-align: center;
+  letter-spacing: 2px;
+}
+.field input::placeholder { color: #5f5a8a; }
+
+.error {
+  color: var(--danger);
+  text-align: center;
+  min-height: 1.2em;
+  font-size: 0.9rem;
+}
+
+.status {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 20px 0;
+}
+.hint {
+  text-align: center;
+  color: var(--text-dim);
+  margin-top: 16px;
+}
+
+.doors {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin: 20px 0;
+}
+.door {
+  flex: 1;
+  aspect-ratio: 2 / 3;
+  max-width: 120px;
+  background: var(--bg-panel);
+  border: 2px solid #3a3466;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--text);
+}
+button.door:active { transform: scale(0.95); }
+.door-face { font-size: 2.4rem; }
+.door-label { font-size: 1.1rem; color: var(--text-dim); }
+.door-picked { border-color: var(--gold); }
+.door-open { border-color: var(--text-dim); opacity: 0.85; }
+
+.decision-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 24px;
+}
+.decision-buttons .btn { width: 100%; font-size: 1.25rem; padding: 20px; }
+
+.result-emoji {
+  text-align: center;
+  font-size: 4.5rem;
+  margin: 30px 0 4px;
+}
+.result-text {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+.result-detail {
+  text-align: center;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+}
+
+.score-box {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+.score-item { text-align: center; }
+.score-label { display: block; color: var(--text-dim); font-size: 0.9rem; }
+.score-value { display: block; font-size: 2rem; font-weight: 700; color: var(--gold); }
+
+/* ================= PROFESSEUR (vidéoprojecteur) ================= */
+
+.app.teacher {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 28px 60px;
+}
+.app.teacher h1 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 32px;
+}
+.app.teacher h2 {
+  font-size: 1.4rem;
+  margin: 0 0 16px;
+  color: var(--gold);
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.code-box, .connected-box {
+  background: var(--bg-panel);
+  border-radius: var(--radius);
+  padding: 14px 24px;
+  text-align: center;
+}
+.code-label, .connected-label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+.code-value {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--gold);
+}
+.connected-value {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.panel {
+  background: var(--bg-panel);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+.stats-table th, .stats-table td {
+  padding: 10px 14px;
+  text-align: center;
+  border-bottom: 1px solid #3a3466;
+}
+.stats-table th:first-child, .stats-table td:first-child {
+  text-align: left;
+  color: var(--text-dim);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.sim-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.explanation p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--text-dim);
+  max-width: 70ch;
+}
+.explanation p:first-of-type { color: var(--text); }
+
+#cc-final-text {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 700px) {
+  .app.teacher { padding: 20px 16px 40px; }
+  .stats-table { font-size: 1rem; }
+  .code-value, .connected-value { font-size: 1.6rem; }
+}

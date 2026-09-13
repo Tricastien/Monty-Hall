@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monty Hall — Professeur</title>
+<link rel="stylesheet" href="/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+<div id="app" class="app teacher">
+
+  <!-- ÉCRAN : créer une session -->
+  <section id="screen-create" class="screen active">
+    <h1>🚪 Monty Hall — Espace professeur</h1>
+    <button id="btn-create" class="btn btn-primary btn-big">CRÉER UNE PARTIE</button>
+  </section>
+
+  <!-- ÉCRAN : tableau de bord -->
+  <section id="screen-dashboard" class="screen">
+    <header class="dashboard-header">
+      <div class="code-box">
+        <span class="code-label">Code de la classe</span>
+        <span class="code-value" id="session-code">------</span>
+      </div>
+      <div class="connected-box">
+        <span class="connected-value" id="connected-count">0</span>
+        <span class="connected-label">élèves connectés</span>
+      </div>
+      <button id="btn-reset" class="btn btn-secondary">Réinitialiser</button>
+    </header>
+
+    <section class="panel">
+      <h2>Résultats de la classe</h2>
+      <table class="stats-table">
+        <thead>
+          <tr><th></th><th>GARDER</th><th>CHANGER</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Parties</td>
+            <td id="stat-keep-plays">0</td>
+            <td id="stat-switch-plays">0</td>
+          </tr>
+          <tr>
+            <td>Victoires</td>
+            <td id="stat-keep-wins">0</td>
+            <td id="stat-switch-wins">0</td>
+          </tr>
+          <tr>
+            <td>Réussite</td>
+            <td id="stat-keep-rate">0 %</td>
+            <td id="stat-switch-rate">0 %</td>
+          </tr>
+        </tbody>
+      </table>
+      <canvas id="chart-live" height="90"></canvas>
+    </section>
+
+    <section class="panel">
+      <h2>Défi de la classe</h2>
+      <button id="btn-start-challenge" class="btn btn-primary">Démarrer une manche collective</button>
+      <div id="challenge-live" class="hidden">
+        <p>Portes choisies : <span id="cc-door-counts">1: 0 · 2: 0 · 3: 0</span> (<span id="cc-choose-answered">0</span>/<span id="cc-choose-total">0</span>)</p>
+        <button id="btn-reveal-openings" class="btn btn-secondary">Révéler les ouvertures</button>
+        <p id="cc-decision-line" class="hidden">Décisions : garder <span id="cc-keep-count">0</span> · changer <span id="cc-switch-count">0</span> (<span id="cc-decide-answered">0</span>/<span id="cc-decide-total">0</span>)</p>
+        <button id="btn-reveal-results" class="btn btn-secondary hidden">Révéler les résultats</button>
+      </div>
+      <div id="challenge-final" class="hidden">
+        <p id="cc-final-text"></p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Grande expérience : simulation</h2>
+      <div class="sim-buttons">
+        <button class="btn btn-secondary" data-count="100">100 parties</button>
+        <button class="btn btn-secondary" data-count="1000">1 000 parties</button>
+        <button class="btn btn-secondary" data-count="10000">10 000 parties</button>
+        <button class="btn btn-secondary" data-count="100000">100 000 parties</button>
+      </div>
+      <div id="sim-result" class="hidden">
+        <table class="stats-table">
+          <thead><tr><th></th><th>GARDER</th><th>CHANGER</th><th>Théorique</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Victoires</td>
+              <td id="sim-keep-wins">0</td>
+              <td id="sim-switch-wins">0</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Taux</td>
+              <td id="sim-keep-rate">0 %</td>
+              <td id="sim-switch-rate">0 %</td>
+              <td>33,3 % / 66,7 %</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel explanation">
+      <h2>Pourquoi changer double vos chances</h2>
+      <p>Votre première porte avait 1 chance sur 3 de contenir la voiture.</p>
+      <p>Les deux autres portes avaient ensemble 2 chances sur 3.</p>
+      <p>Lorsque le présentateur ouvre une porte avec une chèvre, ces 2 chances sur 3 se reportent entièrement sur l'unique porte restante.</p>
+    </section>
+  </section>
+
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/teacher.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Monty Hall — Élève</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="app" class="app student">
+
+  <!-- ÉCRAN 1 : rejoindre une session -->
+  <section id="screen-join" class="screen active">
+    <h1>🚪 Monty Hall</h1>
+    <p class="subtitle">Rejoins la partie de ta classe</p>
+    <label class="field">
+      Code de la classe
+      <input id="input-code" type="text" maxlength="6" placeholder="M7K4P2" autocomplete="off" autocapitalize="characters">
+    </label>
+    <label class="field">
+      Ton prénom (facultatif)
+      <input id="input-name" type="text" maxlength="20" placeholder="Ex : Léa" autocomplete="off">
+    </label>
+    <button id="btn-join" class="btn btn-primary">Rejoindre</button>
+    <p id="join-error" class="error"></p>
+  </section>
+
+  <!-- ÉCRAN 2 : en attente / choix de porte -->
+  <section id="screen-choose" class="screen">
+    <p class="status" id="status-line">Choisissez une porte</p>
+    <div class="doors" id="doors-choose">
+      <button class="door" data-door="1"><span class="door-face">🚪</span><span class="door-label">1</span></button>
+      <button class="door" data-door="2"><span class="door-face">🚪</span><span class="door-label">2</span></button>
+      <button class="door" data-door="3"><span class="door-face">🚪</span><span class="door-label">3</span></button>
+    </div>
+    <p id="waiting-challenge" class="hint hidden">En attente du reste de la classe…</p>
+  </section>
+
+  <!-- ÉCRAN 3 : le présentateur a ouvert une porte -->
+  <section id="screen-decide" class="screen">
+    <p class="status" id="opened-line">Le présentateur ouvre la porte X.</p>
+    <div class="doors" id="doors-decide"></div>
+    <p class="status">Voulez-vous changer de porte ?</p>
+    <div class="decision-buttons">
+      <button id="btn-keep" class="btn btn-keep">🟢 JE GARDE</button>
+      <button id="btn-switch" class="btn btn-switch">🔵 JE CHANGE</button>
+    </div>
+    <p id="waiting-decision" class="hint hidden">En attente du reste de la classe…</p>
+  </section>
+
+  <!-- ÉCRAN 4 : résultat -->
+  <section id="screen-result" class="screen">
+    <p class="result-emoji" id="result-emoji">🚗</p>
+    <p class="result-text" id="result-text">GAGNÉ !</p>
+    <p class="result-detail" id="result-detail"></p>
+    <div class="score-box">
+      <div class="score-item">
+        <span class="score-label">Victoires</span>
+        <span class="score-value" id="score-wins">0</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">Parties</span>
+        <span class="score-value" id="score-games">0</span>
+      </div>
+    </div>
+    <button id="btn-replay" class="btn btn-primary">Rejouer</button>
+  </section>
+
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/student.js"></script>
+</body>
+</html>
