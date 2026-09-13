@@ -1,0 +1,17 @@
+{
+  "name": "monty-hall-classe",
+  "version": "1.0.0",
+  "description": "Application interactive pour faire découvrir le problème de Monty Hall à une classe entière, en temps réel depuis les téléphones des élèves.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test-logic.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  }
+}
